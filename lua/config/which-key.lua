@@ -15,9 +15,9 @@ require("which-key").setup({
       operators = true, -- adds help for operators like d, y, ... and registers them for motion / text object completion
       motions = true, -- adds help for motions
       text_objects = true, -- help for text objects triggered after entering an operator
-      windows = false, -- default bindings on <c-w>
+      windows = true, -- default bindings on <c-w>
       nav = true, -- misc bindings to work with windows
-      z = false, -- bindings for folds, spelling and others prefixed with z
+      z = true, -- bindings for folds, spelling and others prefixed with z
       g = true, -- bindings for prefixed with g
     },
   },
@@ -61,7 +61,7 @@ require("which-key").setup({
     "^:",
     "^ ",
   }, -- hide mapping boilerplate
-  show_help = false, -- show help message on the command line when the popup is visible
+  show_help = true, -- show help message on the command line when the popup is visible
   triggers = "auto", -- automatically setup triggers
   -- triggers = {"<leader>"} -- or specify a list manually
   triggers_blacklist = {
@@ -70,6 +70,70 @@ require("which-key").setup({
     -- most people should not need to change this
     i = { "j", "k" },
     v = { "j", "k" },
-    n = { "<C-h>", "<C-j>", "<C-k>", "<C-l>" },
+    -- n = { "<C-h>", "<C-j>", "<C-k>", "<C-l>" },
   },
 })
+
+local wk = require("which-key")
+local default_options = { silent = true }
+
+-- register non leader based mappings
+wk.register({
+  sa = "Add surrounding",
+  sd = "Delete surrounding",
+  sh = "Highlight surrounding",
+  sn = "Surround update n lines",
+  sr = "Replace surrounding",
+  sF = "Find left surrounding",
+  sf = "Replace right surrounding",
+})
+
+-- Register all leader based mappings
+wk.register({
+  ["<Tab>"] = { "<cmd>e#<cr>", "Prev buffer" },
+  f = {
+    name = "Files",
+    b = { "<cmd>Telescope file_browser grouped=true<cr>", "File browser" },
+    f = { "<cmd>Telescope find_files<cr>", "Find File" },
+    r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
+    s = { "<cmd>w<cr>", "Save Buffer" },
+    p = { "<cmd>Telescope projects<cr>" },
+    -- z = { "<cmd>Telescope zoxide list<CR>", "Zoxide" },
+  },
+  b = {
+    name = "Buffers",
+    b = {
+      "<cmd>Telescope buffers<cr>",
+      "Find buffer",
+    },
+    D = {
+      "<cmd>%bd|e#|bd#<cr>",
+      "Close all but the current buffer",
+    },
+    d = { "<cmd>lua MiniBufremove.delete()<CR>", "Close buffer" },
+  },
+  g = { "Git" },
+  m = {
+    name = "Misc",
+    a = {
+      "<cmd>lua require'telegraph'.telegraph({cmd='gitui', how='tmux_popup'})<cr>",
+      "Test Telegraph",
+    },
+    c = { "<cmd>lua require('functions').toggle_colorcolumn()<cr>", "Toggle Colorcolumn" },
+    d = { "<cmd>lua require('functions').toggle_diagnostics()<cr>", "Toggle Diagnostics" },
+    i = { "<cmd>IlluminateToggle<cr>", "Toggle Illuminate" },
+    l = { "<cmd>source ~/.config/nvim/snippets/*<cr>", "Reload snippets" },
+    o = { "Options" },
+    p = { "<cmd>PackerSync --preview<cr>", "PackerSync" },
+    s = { "<cmd>SymbolsOutline<cr>", "Toggle SymbolsOutline" },
+  },
+  q = {
+    name = "Quickfix",
+    j = { "<cmd>cnext<cr>", "Next Quickfix Item" },
+    k = { "<cmd>cprevious<cr>", "Previous Quickfix Item" },
+    q = { "<cmd>lua require('functions').toggle_qf()<cr>", "Toggle quickfix list" },
+    t = { "<cmd>TodoQuickFix<cr>", "Show TODOs" },
+  },
+  s = { "Search" },
+  w = { "Windows" },
+}, { prefix = "<leader>", mode = "n", default_options })

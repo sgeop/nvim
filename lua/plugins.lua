@@ -48,13 +48,6 @@ require("packer").startup(function(use)
   })
 
   use({
-    "folke/which-key.nvim",
-    config = function()
-      require("which-key")
-    end,
-  })
-
-  use({
     "akinsho/nvim-toggleterm.lua",
     keys = { "<C-n>" },
     config = function()
@@ -69,6 +62,11 @@ require("packer").startup(function(use)
       { "nvim-lua/plenary.nvim" },
       { "nvim-lua/popup.nvim" },
       { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+      { "crispgm/telescope-heading.nvim" },
+      { "nvim-telescope/telescope-symbols.nvim" },
+      { "nvim-telescope/telescope-file-browser.nvim" },
+      { "nvim-telescope/telescope-packer.nvim" },
+      { "nvim-telescope/telescope-ui-select.nvim" },
     },
     config = function()
       require("config.telescope")
@@ -111,11 +109,57 @@ require("packer").startup(function(use)
     end,
   })
 
+  -- Git plugins --
+  use({
+    "TimUntersberger/neogit",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      {
+        "sindrets/diffview.nvim",
+        cmd = {
+          "DiffviewOpen",
+          "DiffviewClose",
+          "DiffviewToggleFiles",
+          "DiffviewFocusFiles",
+        },
+        config = function()
+          require("config.diffview")
+        end
+      },
+    },
+    cmd = "Neogit",
+    config = function()
+      require("config.neogit")
+    end
+  })
+
+  use({
+    "lewis6991/gitsigns.nvim",
+    requires = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("config.gitsigns")
+    end
+  })
+
+  -----------------
+
   use({
     "jose-elias-alvarez/null-ls.nvim",
     requires = { "nvim-lua/plenary.nvim" },
     config = function()
       require("config.null-ls")
+    end,
+  })
+
+  use({
+    "kevinhwang91/nvim-bqf",
+    requires = {
+      "junegunn/fzf",
+      module = "nvim-bqf",
+    },
+    ft = "qf",
+    config = function()
+      require("nvim-bqf")
     end,
   })
 
@@ -177,6 +221,13 @@ require("packer").startup(function(use)
     end,
   })
 
+  use({
+    "https://gitlab.com/yorickpeterse/nvim-pqf.git",
+    config = function()
+      require("pqf").setup()
+    end,
+  })
+
   -- use {
   --   'declancm/cinnamon.nvim',
   --   config = function () require('config.cinnamon') end
@@ -189,6 +240,13 @@ require("packer").startup(function(use)
     end,
   })
 
+  use {
+    "ahmedkhalf/project.nvim",
+    config = function()
+      require("project_nvim")
+    end
+  }
+
   -- Colorschemes
   use({
     { "folke/tokyonight.nvim" },
@@ -198,7 +256,14 @@ require("packer").startup(function(use)
   -- detect tabstop and shiftwidth options from file
   use("tpope/vim-sleuth")
 
-  use("sheerun/vim-polyglot")
+
+  use({
+    "folke/which-key.nvim",
+    config = function()
+      require("config.which-key")
+    end,
+  })
+
 
   -- Golang specific plugin(s)
   use({
