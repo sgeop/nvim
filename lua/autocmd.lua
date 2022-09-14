@@ -25,3 +25,11 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 		pattern = { "plugins.lua" },
 		callback = sync_packer,
 })
+
+-- vim.api.nvim_create_autocmd({ "CursorHold "}, {
+-- 		pattern = {"*"},
+-- 		callback = function()
+-- 				vim.diagnostics.open_float(nil, {focusable = false})
+-- 		end
+-- })
+
