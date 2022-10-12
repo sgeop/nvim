@@ -1,23 +1,23 @@
-local conf = require("userconf")
-
-vim.g.mapleader = conf.leader_key
-
--- colorscheme
-require("plugins")
-require("mappings")
-require("autocmd")
-
-require("theme" .. "." .. conf.theme)
-
--- General settings
-vim.o.termguicolors = true
-vim.o.syntax = 'on'
-vim.o.swapfile = conf.swapfile
-vim.o.clipboard = "unnamedplus"
-vim.o.mouse = conf.mouse
-vim.o.number = conf.numbered_lines
-
-vim.bo.autoindent = true
-vim.bo.smartindent = true
-
-vim.o.fillchars = conf.fillchars
+require "user.options"
+require "user.notify"
+require "user.keymaps"
+require "user.plugins"
+require "user.autocommands"
+require "user.colorscheme"
+require "user.cmp"
+require "user.telescope"
+require "user.treesitter"
+require "user.autopairs"
+require "user.comment"
+require "user.gitsigns"
+require "user.nvim-tree"
+require "user.bufferline"
+require "user.lualine"
+require "user.toggleterm"
+require "user.project"
+require "user.impatient"
+require "user.illuminate"
+require "user.indentline"
+require "user.alpha"
+require "user.lsp"
+require "user.dap"
