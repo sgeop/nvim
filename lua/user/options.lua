@@ -4,7 +4,7 @@ vim.opt.cmdheight = 1                           -- more space in the neovim comm
 vim.opt.completeopt = { "menuone", "noselect" } -- mostly just for cmp
 vim.opt.conceallevel = 0                        -- so that `` is visible in markdown files
 vim.opt.fileencoding = "utf-8"                  -- the encoding written to a file
-vim.opt.hlsearch = true                         -- highlight all matches on previous search pattern
+vim.opt.hlsearch = false                        -- highlight all matches on previous search pattern
 vim.opt.ignorecase = true                       -- ignore case in search patterns
 vim.opt.mouse = "a"                             -- allow the mouse to be used in neovim
 vim.opt.pumheight = 10                          -- pop up menu height
@@ -36,5 +36,5 @@ vim.opt.sidescrolloff = 8
 vim.opt.guifont = "monospace:h17"               -- the font used in graphical neovim applications
 vim.opt.fillchars.eob=" "
 vim.opt.shortmess:append "c"
-vim.opt.whichwrap:append("<,>,[,],h,l")
+vim.opt.whichwrap:append("<,>,[,]") -- ,h,l")
 vim.opt.iskeyword:append("-")

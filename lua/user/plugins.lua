@@ -57,7 +57,6 @@ return packer.startup(function(use)
     use { "lewis6991/impatient.nvim", commit = "969f2c5c90457612c09cf2a13fee1adaa986d350" }
     use { "lukas-reineke/indent-blankline.nvim", commit = "6177a59552e35dfb69e1493fd68194e673dc3ee2" }
     use { "goolord/alpha-nvim", commit = "ef27a59e5b4d7b1c2fe1950da3fe5b1c5f3b4c94" }
-    use { "williamboman/mason.nvim", commit = "6bbababbf781fdd97e1555ae958f1e7760c82496" }
     use { "linty-org/key-menu.nvim", commit = "6fcb95126c882d285f32d6f34f0e61d82fd516c1" }
 
     -- Colorschemes
@@ -77,6 +76,8 @@ return packer.startup(function(use)
     use { "rafamadriz/friendly-snippets", commit = "d27a83a363e61009278b6598703a763ce9c8e617" } -- a bunch of snippets to use
 
     -- LSP
+    use { "williamboman/mason.nvim", commit = "6bbababbf781fdd97e1555ae958f1e7760c82496" }
+    use { "williamboman/mason-lspconfig.nvim", commit = "d2bcb38523a7f602e01ca0425ec44f4081362fb9" }
     use { "neovim/nvim-lspconfig", commit = "148c99bd09b44cf3605151a06869f6b4d4c24455" } -- enable LSP
     use { "jose-elias-alvarez/null-ls.nvim", commit = "ff40739e5be6581899b43385997e39eecdbf9465" } -- for formatters and linters
     use { "RRethy/vim-illuminate", commit = "c82e6d04f27a41d7fdcad9be0bce5bb59fcb78e5" }
