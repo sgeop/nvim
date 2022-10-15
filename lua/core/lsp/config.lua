@@ -39,27 +39,27 @@ local opts = {}
 
 for _, server in pairs(servers) do
     opts = {
-        on_attach = require("user.lsp.handlers").on_attach,
-        capabilities = require("user.lsp.handlers").capabilities,
+        on_attach = require("core.lsp.handlers").on_attach,
+        capabilities = require("core.lsp.handlers").capabilities,
     }
 
     if server == "sumneko_lua" then
-        local sumneko_opts = require "user.lsp.settings.sumneko_lua"
+        local sumneko_opts = require "core.lsp.settings.sumneko_lua"
         opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
     end
 
     if server == "pyright" then
-        local pyright_opts = require "user.lsp.settings.pyright"
+        local pyright_opts = require "core.lsp.settings.pyright"
         opts = vim.tbl_deep_extend("force", pyright_opts, opts)
     end
 
     if server == "gopls" then
-        local gopls_opts = require "user.lsp.settings.gopls"
+        local gopls_opts = require "core.lsp.settings.gopls"
         opts = vim.tbl_deep_extend("force", gopls_opts, opts)
     end
 
     if server == "yamlls" then
-        local yamlls_opts = require "user.lsp.settings.yamlls"
+        local yamlls_opts = require "core.lsp.settings.yamlls"
         opts = vim.tbl_deep_extend("force", yamlls_opts, opts)
     end
 
