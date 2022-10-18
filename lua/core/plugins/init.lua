@@ -1,49 +1,54 @@
-local fn = vim.fn
-
--- Automatically install packer
-local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-    PACKER_BOOTSTRAP = fn.system {
-        "git",
-        "clone",
-        "--depth",
-        "1",
-        "https://github.com/wbthomason/packer.nvim",
-        install_path,
-    }
-    print "Installing packer close and reopen Neovim..."
-    vim.cmd [[packadd packer.nvim]]
-end
-
--- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd [[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]]
+local packer_bootstrap = require("core.plugins.bootstrap").ensure()
 
 -- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, "packer")
-if not status_ok then
+local ok, packer = pcall(require, "packer")
+if not ok then
+    vim.notify "Packer not installed yet. Try closing and reopening vim..."
     return
 end
 
+-- Autocommand that reloads neovim whenever you save the plugins.lua file
+--vim.cmd [[
+--  augroup packer_user_config
+--    autocmd!
+--    autocmd BufWritePost core/plugins/init.lua source <afile> | PackerSync
+--  augroup end
+--]]
+
+local packer_config = require "core.plugins.config"
+
+-- vim.api.nvim_create_autocmd({ "User" }, {
+--     pattern = { "PackerComplete" },
+--     callback = function()
+--         local ts = tostring(os.time())
+--         local tmpfile = "packer_snapshot_tmp.json"
+--         local full_tmpfile = packer_config.snapshot_path .. "/" .. tmpfile
+--         local ssfile = packer_config.snapshot_path .. "/" .. "packer_snapshot_" .. ts .. ".json"
+--         local cmd = "cat " .. full_tmpfile .. " | jq --sortkeys . >> " .. ssfile
+--         vim.notify("making snapshot at " .. full_tmpfile, "info")
+--         vim.notify("running " .. cmd, "info")
+--         packer.snapshot(tmpfile)
+--         os.execute(cmd)
+--         vim.notify("packer complete, creating snapshot at " .. ssfile)
+--     end,
+-- })
+
 -- Have packer use a popup window
-packer.init {
-    display = {
-        open_fn = function()
-            return require("packer.util").float { border = "rounded" }
-        end,
-    },
-}
+packer.init(packer_config)
 
 -- Install your plugins here
 return packer.startup(function(use)
     -- My plugins here
     use { "wbthomason/packer.nvim", commit = "00ec5adef58c5ff9a07f11f45903b9dbbaa1b422" } -- Have packer manage itself
     use { "nvim-lua/plenary.nvim", commit = "968a4b9afec0c633bc369662e78f8c5db0eba249" } -- Useful lua functions used by lots of plugins
-    use { "rcarriga/nvim-notify", commit = "7a9be08986b4d98dd685a6b40a62fcba19c1ad27" }
+    use {
+        "rcarriga/nvim-notify",
+        commit = "7a9be08986b4d98dd685a6b40a62fcba19c1ad27",
+        config = function()
+            local notify = require "notify"
+            vim.notify = notify
+        end,
+    }
     use { "windwp/nvim-autopairs", commit = "fa6876f832ea1b71801c4e481d8feca9a36215ec" } -- Autopairs, integrates with both cmp and treesitter
     use { "numToStr/Comment.nvim", commit = "2c26a00f32b190390b664e56e32fd5347613b9e2" }
     use { "JoosepAlviste/nvim-ts-context-commentstring", commit = "88343753dbe81c227a1c1fd2c8d764afb8d36269" }
@@ -101,7 +106,7 @@ return packer.startup(function(use)
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
-    if PACKER_BOOTSTRAP then
+    if packer_bootstrap then
         require("packer").sync()
     end
 end)

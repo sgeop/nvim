@@ -1,3 +1,8 @@
+local status_ok, user_config = pcall(require, "user.config")
+if not status_ok then
+  vim.notify("failed loading user.config", "error")
+end
+
 -- Use 'q' to quit from common plugins
 vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = { "qf", "help", "man", "lspinfo", "spectre_panel", "lir" },
@@ -29,7 +34,18 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
-vim.cmd "autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif"
+
+if user_config.autoclose_nvim_tree then
+  vim.api.nvim_create_autocmd("BufEnter", {
+      nested = true,
+      callback = function()
+          if #vim.api.nvim_list_wins() == 1 and vim.api.nvim_buf_get_name(0):match("NvimTree_") ~= nil then
+              vim.cmd "NvimTreeClose"
+              vim.cmd "quit"
+          end
+    end
+  })
+end
 
 -- Fixes Autocomment
 vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
@@ -38,9 +54,11 @@ vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
   end,
 })
 
--- Highlight Yanked Text
-vim.api.nvim_create_autocmd({ "TextYankPost" }, {
-  callback = function()
-    vim.highlight.on_yank { higroup = "Visual", timeout = 200 }
-  end,
-})
+-- Highlight Yanked Text If configured
+if user_config.hl_yanked_text then
+  vim.api.nvim_create_autocmd({ "TextYankPost" }, {
+    callback = function()
+      vim.highlight.on_yank { higroup = "Visual", timeout = 200 }
+    end,
+  })
+end
