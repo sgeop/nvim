@@ -58,9 +58,14 @@ for _, server in pairs(servers) do
         opts = vim.tbl_deep_extend("force", gopls_opts, opts)
     end
 
-    if server == "yamlls" then
-        local yamlls_opts = require "core.lsp.settings.yamlls"
-        opts = vim.tbl_deep_extend("force", yamlls_opts, opts)
+    -- if server == "yamlls" then
+    --     local yamlls_opts = require "core.lsp.settings.yamlls"
+    --     opts = vim.tbl_deep_extend("force", yamlls_opts, opts)
+    -- end
+
+    if server == "ansiblels" then
+        local ansiblels_opts = require "core.lsp.settings.ansiblels"
+        opts = vim.tbl_deep_extend("force", ansiblels_opts, opts)
     end
 
     lspconfig[server].setup(opts)
