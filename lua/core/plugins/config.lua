@@ -8,5 +8,5 @@ return {
     max_jobs = 20,
     preview_updates = true,
     snapshot_path = vim.fn.stdpath "config",
-    -- snapshot = "packer_snapshot.json",
+    snapshot = "packer-snapshot-2023-02-17",
 }
