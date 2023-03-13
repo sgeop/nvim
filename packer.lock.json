@@ -38,6 +38,9 @@
   "gitsigns.nvim": {
     "commit": "f29f0b2"
   },
+  "glow.nvim": {
+    "commit": "5a8ccfb"
+  },
   "hydra.nvim": {
     "commit": "3ced42c"
   },
@@ -61,9 +64,6 @@
   },
   "neorg": {
     "commit": "19c55583"
-  },
-  "nnn.nvim": {
-    "commit": "95cf912"
   },
   "null-ls.nvim": {
     "commit": "ab4e926"

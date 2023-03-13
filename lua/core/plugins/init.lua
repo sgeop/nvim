@@ -64,7 +64,6 @@ return packer.startup {
         use { "linty-org/key-menu.nvim" }
 
         use { "anuvyklack/hydra.nvim" }
-        use { "luukvbaal/nnn.nvim" }
 
         -- Colorschemes
         use { "folke/tokyonight.nvim" }
@@ -110,11 +109,17 @@ return packer.startup {
 
         -- Productivity tools
         use { "nvim-neorg/neorg", tag = "2.0.0", run = ":Neorg sync-parsers" }
+        use {
+            "ellisonleao/glow.nvim",
+            config = function()
+                require("glow").setup()
+            end,
+        }
 
         -- Automatically set up your configuration after cloning packer.nvim
         -- Put this at the end after all plugins
         if packer_bootstrap then
-            vim.notify "packer bootstrapping!!!!!!!!!!!!!!!!"
+            vim.notify "packer bootstrapping..."
             require("packer").sync()
         end
     end,
