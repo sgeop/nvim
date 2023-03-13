@@ -16,6 +16,12 @@ bufferline.setup {
                 highlight = "Directory",
                 separator = true,
             },
+            {
+                filetype = "nnn",
+                text = "nnn explorer",
+                highlight = "Directory",
+                separator = true,
+            },
         },
         buffer_close_icon = "",
         modified_icon = "●",

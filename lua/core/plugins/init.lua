@@ -34,80 +34,89 @@ local packer_config = require "core.plugins.config"
 -- })
 
 -- Have packer use a popup window
-packer.init(packer_config)
+-- packer.init(packer_config)
 
 -- Install your plugins here
-return packer.startup(function(use)
-    -- My plugins here
-    use { "wbthomason/packer.nvim" } -- Have packer manage itself
-    use { "nvim-lua/plenary.nvim" } -- Useful lua functions used by lots of plugins
-    use {
-        "rcarriga/nvim-notify",
-        config = function()
-            local notify = require "notify"
-            vim.notify = notify
-        end,
-    }
-    use { "windwp/nvim-autopairs" } -- Autopairs, integrates with both cmp and treesitter
-    use { "numToStr/Comment.nvim" }
-    use { "JoosepAlviste/nvim-ts-context-commentstring" }
-    use { "kyazdani42/nvim-web-devicons" }
-    use { "kyazdani42/nvim-tree.lua" }
-    use { "akinsho/bufferline.nvim", tag = "v3.*", requires = "nvim-tree/nvim-web-devicons" }
-    use { "moll/vim-bbye" }
-    use { "nvim-lualine/lualine.nvim" }
-    use { "akinsho/toggleterm.nvim" }
-    use { "ahmedkhalf/project.nvim" }
-    use { "lewis6991/impatient.nvim" }
-    use { "lukas-reineke/indent-blankline.nvim" }
-    use { "goolord/alpha-nvim" }
-    use { "linty-org/key-menu.nvim" }
+return packer.startup {
+    function(use)
+        use { "wbthomason/packer.nvim" } -- Have packer manage itself
+        use { "nvim-lua/plenary.nvim" } -- Useful lua functions used by lots of plugins
+        use {
+            "rcarriga/nvim-notify",
+            config = function()
+                local notify = require "notify"
+                vim.notify = notify
+            end,
+        }
+        use { "windwp/nvim-autopairs" } -- Autopairs, integrates with both cmp and treesitter
+        use { "numToStr/Comment.nvim" }
+        use { "JoosepAlviste/nvim-ts-context-commentstring" }
+        use { "kyazdani42/nvim-web-devicons" }
+        use { "kyazdani42/nvim-tree.lua" }
+        use { "akinsho/bufferline.nvim", tag = "v3.*", requires = "nvim-tree/nvim-web-devicons" }
+        use { "moll/vim-bbye" }
+        use { "nvim-lualine/lualine.nvim" }
+        use { "akinsho/toggleterm.nvim" }
+        use { "ahmedkhalf/project.nvim" }
+        use { "lewis6991/impatient.nvim" }
+        use { "lukas-reineke/indent-blankline.nvim" }
+        use { "goolord/alpha-nvim" }
+        use { "linty-org/key-menu.nvim" }
 
-    -- Colorschemes
-    use { "folke/tokyonight.nvim" }
-    use { "lunarvim/darkplus.nvim" }
+        use { "anuvyklack/hydra.nvim" }
+        use { "luukvbaal/nnn.nvim" }
 
-    -- cmp plugins
-    use { "hrsh7th/nvim-cmp" } -- The completion plugin
-    use { "hrsh7th/cmp-buffer" } -- buffer completions
-    use { "hrsh7th/cmp-path" } -- path completions
-    use { "saadparwaiz1/cmp_luasnip" } -- snippet completions
-    use { "hrsh7th/cmp-nvim-lsp" }
-    use { "hrsh7th/cmp-nvim-lua" }
+        -- Colorschemes
+        use { "folke/tokyonight.nvim" }
+        use { "lunarvim/darkplus.nvim" }
 
-    -- snippets
-    use { "L3MON4D3/LuaSnip" } --snippet engine
-    use { "rafamadriz/friendly-snippets" } -- a bunch of snippets to use
+        -- cmp plugins
+        use { "hrsh7th/nvim-cmp" } -- The completion plugin
+        use { "hrsh7th/cmp-buffer" } -- buffer completions
+        use { "hrsh7th/cmp-path" } -- path completions
+        use { "saadparwaiz1/cmp_luasnip" } -- snippet completions
+        use { "hrsh7th/cmp-nvim-lsp" }
+        use { "hrsh7th/cmp-nvim-lua" }
+        -- use { "hrsh7th/cmp-nvim-lua-signature-help" }
 
-    -- LSP
-    use { "williamboman/mason.nvim" }
-    use { "williamboman/mason-lspconfig.nvim" }
-    use { "neovim/nvim-lspconfig" } -- enable LSP
-    use { "jose-elias-alvarez/null-ls.nvim" } -- for formatters and linters
-    use { "RRethy/vim-illuminate" }
+        -- snippets
+        use { "L3MON4D3/LuaSnip" } --snippet engine
+        use { "rafamadriz/friendly-snippets" } -- a bunch of snippets to use
 
-    -- Telescope
-    use { "nvim-telescope/telescope.nvim" }
+        -- LSP
+        use { "williamboman/mason.nvim" }
+        use { "williamboman/mason-lspconfig.nvim" }
+        use { "neovim/nvim-lspconfig" } -- enable LSP
+        use { "jose-elias-alvarez/null-ls.nvim" } -- for formatters and linters
+        use { "RRethy/vim-illuminate" }
 
-    -- Treesitter
-    use {
-        "nvim-treesitter/nvim-treesitter",
-    }
+        -- Telescope
+        use { "nvim-telescope/telescope.nvim" }
+        -- use { "nvim-telescope/telescope-project.nvim" }
+        -- use { "jvgrootveld/telescope-zoxide" }
 
-    -- Git
-    use { "lewis6991/gitsigns.nvim" }
+        -- Treesitter
+        use {
+            "nvim-treesitter/nvim-treesitter",
+        }
 
-    -- DAP
-    use { "mfussenegger/nvim-dap" }
-    use { "rcarriga/nvim-dap-ui" }
-    use { "ravenxrz/DAPInstall.nvim" }
+        -- Git
+        use { "lewis6991/gitsigns.nvim" }
 
-    -- Productivity tools
-    use { "nvim-neorg/neorg", tag = "2.0.0", run = ":Neorg sync-parsers" }
+        -- DAP
+        use { "mfussenegger/nvim-dap" }
+        use { "rcarriga/nvim-dap-ui" }
+        use { "ravenxrz/DAPInstall.nvim" }
 
-    -- Automatically set up your configuration after cloning packer.nvim
-    -- Put this at the end after all plugins
-    if packer_bootstrap then
-        require("packer").sync()
-    end
-end)
+        -- Productivity tools
+        use { "nvim-neorg/neorg", tag = "2.0.0", run = ":Neorg sync-parsers" }
+
+        -- Automatically set up your configuration after cloning packer.nvim
+        -- Put this at the end after all plugins
+        if packer_bootstrap then
+            vim.notify "packer bootstrapping!!!!!!!!!!!!!!!!"
+            require("packer").sync()
+        end
+    end,
+    config = packer_config,
+}
