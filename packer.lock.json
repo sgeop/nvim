@@ -1,0 +1,125 @@
+{
+  "Comment.nvim": {
+    "commit": "eab2c83"
+  },
+  "DAPInstall.nvim": {
+    "commit": "8798b4c"
+  },
+  "LuaSnip": {
+    "commit": "9bff06b"
+  },
+  "alpha-nvim": {
+    "commit": "54c9ba4"
+  },
+  "bufferline.nvim": {
+    "commit": "c7492a7"
+  },
+  "cmp-buffer": {
+    "commit": "3022dbc"
+  },
+  "cmp-nvim-lsp": {
+    "commit": "0e6b2ed"
+  },
+  "cmp-nvim-lua": {
+    "commit": "f349163"
+  },
+  "cmp-path": {
+    "commit": "91ff86c"
+  },
+  "cmp_luasnip": {
+    "commit": "1809552"
+  },
+  "darkplus.nvim": {
+    "commit": "1826879"
+  },
+  "friendly-snippets": {
+    "commit": "80597f3"
+  },
+  "gitsigns.nvim": {
+    "commit": "f29f0b2"
+  },
+  "hydra.nvim": {
+    "commit": "3ced42c"
+  },
+  "impatient.nvim": {
+    "commit": "c90e273"
+  },
+  "indent-blankline.nvim": {
+    "commit": "8299fe7"
+  },
+  "key-menu.nvim": {
+    "commit": "6951c45"
+  },
+  "lualine.nvim": {
+    "commit": "0050b30"
+  },
+  "mason-lspconfig.nvim": {
+    "commit": "7a97a77"
+  },
+  "mason.nvim": {
+    "commit": "14ae1ca"
+  },
+  "neorg": {
+    "commit": "19c55583"
+  },
+  "nnn.nvim": {
+    "commit": "95cf912"
+  },
+  "null-ls.nvim": {
+    "commit": "ab4e926"
+  },
+  "nvim-autopairs": {
+    "commit": "45ae312"
+  },
+  "nvim-cmp": {
+    "commit": "cfafe0a"
+  },
+  "nvim-dap": {
+    "commit": "401f5f2"
+  },
+  "nvim-dap-ui": {
+    "commit": "100c67d"
+  },
+  "nvim-lspconfig": {
+    "commit": "27e6eb2"
+  },
+  "nvim-notify": {
+    "commit": "bdd647f"
+  },
+  "nvim-tree.lua": {
+    "commit": "02fdc26"
+  },
+  "nvim-treesitter": {
+    "commit": "f6df07be"
+  },
+  "nvim-ts-context-commentstring": {
+    "commit": "a0f8956"
+  },
+  "nvim-web-devicons": {
+    "commit": "ade34ca"
+  },
+  "packer.nvim": {
+    "commit": "1d0cf98"
+  },
+  "plenary.nvim": {
+    "commit": "9a0d3bf"
+  },
+  "project.nvim": {
+    "commit": "685bc8e"
+  },
+  "telescope.nvim": {
+    "commit": "203bf56"
+  },
+  "toggleterm.nvim": {
+    "commit": "19aad0f"
+  },
+  "tokyonight.nvim": {
+    "commit": "a0abe53"
+  },
+  "vim-bbye": {
+    "commit": "25ef93a"
+  },
+  "vim-illuminate": {
+    "commit": "49062ab"
+  }
+}
