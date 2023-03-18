@@ -38,4 +38,21 @@ vim.opt.fillchars.eob = " "
 vim.opt.shortmess:append "c"
 vim.opt.whichwrap:append "<,>,[,]" -- ,h,l")
 vim.opt.iskeyword:append "-"
-vim.g.python_3_host_prog = "/usr/local/bin/python3"
+
+local function isempty(s)
+    return s == nil or s == ""
+end
+
+local os_name = vim.loop.os_uname().sysname
+
+local conda_prefix = os.getenv "CONDA_PREFIX"
+if not isempty(conda_prefix) then
+    vim.g.python_host_prog = conda_prefix .. "/bin/python"
+    vim.g.python3_host_prog = conda_prefix .. "/bin/python"
+elseif os_name == "Darwin" then
+    vim.g.python_host_prog = "/usr/local/bin/python3"
+    vim.g.python_3_host_prog = "/usr/local/bin/python3"
+else
+    vim.g.python_host_prog = "/usr/bin/python"
+    vim.g.python3_host_prog = "/usr/bin/python3"
+end

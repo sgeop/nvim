@@ -14,4 +14,9 @@ M.packer_lockfile = function()
     os.remove(vim.fn.stdpath "config" .. "/packer_snapshot_tmp.json")
 end
 
+vim.api.nvim_create_user_command("PackerTmpSnapshot", function()
+    require("packer").snapshot "packer_snapshot_tmp.json"
+end, {})
+vim.api.nvim_create_user_command("PackerLockFromTmp", M.packer_lockfile, {})
+
 return M

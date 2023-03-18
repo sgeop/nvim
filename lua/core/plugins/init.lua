@@ -110,6 +110,13 @@ return packer.startup {
         -- Productivity tools
         use { "nvim-neorg/neorg", tag = "2.0.0", run = ":Neorg sync-parsers" }
         use {
+            "toppair/peek.nvim",
+            run = "deno task --quiet build:fast",
+            config = function()
+                require("peek").setup()
+            end,
+        }
+        use {
             "ellisonleao/glow.nvim",
             config = function()
                 require("glow").setup()

@@ -101,6 +101,9 @@
   "packer.nvim": {
     "commit": "1d0cf98"
   },
+  "peek.nvim": {
+    "commit": "571f14c"
+  },
   "plenary.nvim": {
     "commit": "9a0d3bf"
   },

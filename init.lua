@@ -1,5 +1,3 @@
-vim.g.python3_host_prog = "/usr/local/bin/python3"
-
 require "core.plugins"
 require "core.options"
 require "core.keymaps"
