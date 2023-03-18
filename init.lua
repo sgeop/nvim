@@ -20,3 +20,6 @@ require "core.indentline"
 require "core.alpha"
 require "core.lsp"
 require "core.dap"
+require "core.neorg"
+
+require "user"

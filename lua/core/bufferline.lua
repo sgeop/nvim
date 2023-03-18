@@ -1,92 +1,122 @@
 local status_ok, bufferline = pcall(require, "bufferline")
 if not status_ok then
-  return
+    return
 end
 
 bufferline.setup {
-  options = {
-    close_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
-    right_mouse_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
-    offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
-    separator_style = "thin", -- | "thick" | "thin" | { 'any', 'any' },
-  },
-  highlights = {
-    fill = {
-      guifg = { attribute = "fg", highlight = "#ff0000" },
-      guibg = { attribute = "bg", highlight = "TabLine" },
+    options = {
+        mode = "buffers",
+        close_command = "bdelete! %d", -- can be a string | function, see "Mouse actions"
+        right_mouse_command = "bdelete! %d", -- can be a string | function, see "Mouse actions"
+        left_mouse_command = "buffer %d",
+        offsets = {
+            {
+                filetype = "NvimTree",
+                text = "File Explorer",
+                highlight = "Directory",
+                separator = true,
+            },
+            {
+                filetype = "nnn",
+                text = "nnn explorer",
+                highlight = "Directory",
+                separator = true,
+            },
+        },
+        buffer_close_icon = "",
+        modified_icon = "●",
+        close_icon = "",
+        left_trunc_marker = "",
+        right_trunc_marker = "",
+        separator_style = "thin", -- | "thick" | "thin" | { 'any', 'any' },
+        max_name_length = 18,
+        max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
+        truncate_names = true, -- whether or not tab names should be truncated
+        tab_size = 18,
+        diagnostics = "nvim_lsp",
+        diagnostics_update_in_insert = false,
+        color_icons = true,
+        show_buffer_icons = true,
+        hover = {
+            enabled = true,
+            delay = 200,
+            reveal = { "close" },
+        },
+        sort_by = "directory",
     },
-    background = {
-      guifg = { attribute = "fg", highlight = "TabLine" },
-      guibg = { attribute = "bg", highlight = "TabLine" },
-    },
+    highlights = {
+        fill = {
+            ctermbg = 7,
+            ctermfg = 0,
+        },
+        background = {
+            fg = { attribute = "fg", highlight = "TabLine" },
+            bg = { attribute = "bg", highlight = "TabLine" },
+        },
 
-    buffer_visible = {
-      guifg = { attribute = "fg", highlight = "TabLine" },
-      guibg = { attribute = "bg", highlight = "TabLine" },
-    },
+        buffer_visible = {
+            fg = { attribute = "fg", highlight = "TabLine" },
+            bg = { attribute = "bg", highlight = "TabLine" },
+        },
 
-    close_button = {
-      guifg = { attribute = "fg", highlight = "TabLine" },
-      guibg = { attribute = "bg", highlight = "TabLine" },
-    },
-    close_button_visible = {
-      guifg = { attribute = "fg", highlight = "TabLine" },
-      guibg = { attribute = "bg", highlight = "TabLine" },
-    },
+        close_button = {
+            fg = { attribute = "fg", highlight = "TabLine" },
+            bg = { attribute = "bg", highlight = "TabLine" },
+        },
+        close_button_visible = {
+            fg = { attribute = "fg", highlight = "TabLine" },
+            bg = { attribute = "bg", highlight = "TabLine" },
+        },
 
-    tab_selected = {
-      guifg = { attribute = "fg", highlight = "Normal" },
-      guibg = { attribute = "bg", highlight = "Normal" },
-    },
-    tab = {
-      guifg = { attribute = "fg", highlight = "TabLine" },
-      guibg = { attribute = "bg", highlight = "TabLine" },
-    },
-    tab_close = {
-      guifg = { attribute = "fg", highlight = "TabLineSel" },
-      guibg = { attribute = "bg", highlight = "Normal" },
-    },
+        tab_selected = {
+            fg = { attribute = "fg", highlight = "Normal" },
+            bg = { attribute = "bg", highlight = "Normal" },
+        },
+        tab = {
+            fg = { attribute = "fg", highlight = "TabLine" },
+            bg = { attribute = "bg", highlight = "TabLine" },
+        },
+        tab_close = {
+            fg = { attribute = "fg", highlight = "TabLineSel" },
+            bg = { attribute = "bg", highlight = "Normal" },
+        },
 
-    duplicate_selected = {
-      guifg = { attribute = "fg", highlight = "TabLineSel" },
-      guibg = { attribute = "bg", highlight = "TabLineSel" },
-      gui = "italic",
-    },
-    duplicate_visible = {
-      guifg = { attribute = "fg", highlight = "TabLine" },
-      guibg = { attribute = "bg", highlight = "TabLine" },
-      gui = "italic",
-    },
-    duplicate = {
-      guifg = { attribute = "fg", highlight = "TabLine" },
-      guibg = { attribute = "bg", highlight = "TabLine" },
-      gui = "italic",
-    },
+        duplicate_selected = {
+            fg = { attribute = "fg", highlight = "TabLineSel" },
+            bg = { attribute = "bg", highlight = "TabLineSel" },
+        },
+        duplicate_visible = {
+            fg = { attribute = "fg", highlight = "TabLine" },
+            bg = { attribute = "bg", highlight = "TabLine" },
+        },
+        duplicate = {
+            fg = { attribute = "fg", highlight = "TabLine" },
+            bg = { attribute = "bg", highlight = "TabLine" },
+        },
 
-    modified = {
-      guifg = { attribute = "fg", highlight = "TabLine" },
-      guibg = { attribute = "bg", highlight = "TabLine" },
+        modified = {
+            fg = { attribute = "fg", highlight = "TabLine" },
+            bg = { attribute = "bg", highlight = "TabLine" },
+        },
+        modified_selected = {
+            fg = { attribute = "fg", highlight = "Normal" },
+            bg = { attribute = "bg", highlight = "Normal" },
+        },
+        modified_visible = {
+            fg = { attribute = "fg", highlight = "TabLine" },
+            bg = { attribute = "bg", highlight = "TabLine" },
+        },
+        separator = {
+            fg = { attribute = "bg", highlight = "TabLine" },
+            bg = { attribute = "bg", highlight = "TabLine" },
+        },
+        separator_selected = {
+            fg = { attribute = "bg", highlight = "Normal" },
+            bg = { attribute = "bg", highlight = "Normal" },
+        },
+        indicator_selected = {
+            fg = { attribute = "fg", highlight = "LspDiagnosticsDefaultHint" },
+            bg = { attribute = "bg", highlight = "Normal" },
+        },
     },
-    modified_selected = {
-      guifg = { attribute = "fg", highlight = "Normal" },
-      guibg = { attribute = "bg", highlight = "Normal" },
-    },
-    modified_visible = {
-      guifg = { attribute = "fg", highlight = "TabLine" },
-      guibg = { attribute = "bg", highlight = "TabLine" },
-    },
-
-    separator = {
-      guifg = { attribute = "bg", highlight = "TabLine" },
-      guibg = { attribute = "bg", highlight = "TabLine" },
-    },
-    separator_selected = {
-      guifg = { attribute = "bg", highlight = "Normal" },
-      guibg = { attribute = "bg", highlight = "Normal" },
-    },
-    indicator_selected = {
-      guifg = { attribute = "fg", highlight = "LspDiagnosticsDefaultHint" },
-      guibg = { attribute = "bg", highlight = "Normal" },
-    },
-  },
 }

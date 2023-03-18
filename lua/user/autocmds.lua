@@ -1,0 +1,9 @@
+-- vim.api.nvim_create_autocmd({ "User" }, {
+--     pattern = { "PackerComplete" },
+--     callback = function()
+--         vim.notify "packer install/sync complete"
+--         require("packer").snapshot "packer_snapshot_raw.json"
+--         require("user.functions").packer_lockfile()
+--         os.remove(vim.fn.stdpath "config" .. "/packer_snapshot_raw.json")
+--     end,
+-- })
