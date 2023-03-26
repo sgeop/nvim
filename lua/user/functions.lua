@@ -1,22 +1,21 @@
-M = {}
-
-M.packer_snapshot = function()
-    vim.notify "packer install/sync complete"
-    require("packer").snapshot "packer_snapshot_tmp.json"
-    require("user.functions").packer_lockfile()
+local status_ok, packer = pcall(require, "packer")
+if not status_ok then
+    vim.notify "could not load packer"
 end
 
-M.packer_lockfile = function()
-    local config_path = vim.fn.stdpath "config"
-    local snapshot_file = config_path .. "/packer_snapshot_tmp.json"
-    local lock_file = config_path .. "/packer.lock.json"
-    os.execute("jq --sort-keys . " .. snapshot_file .. " > " .. lock_file)
-    os.remove(vim.fn.stdpath "config" .. "/packer_snapshot_tmp.json")
+local config_path = vim.fn.stdpath "config"
+local snapshot_file = "packer_snapshot_tmp.json"
+local snapshot_file_absolute = config_path .. snapshot_file
+local lockfile_absolute = config_path .. "packer.lock.json"
+
+local packer_snapshot = function()
+    packer.snapshot(snapshot_file)
 end
 
-vim.api.nvim_create_user_command("PackerTmpSnapshot", function()
-    require("packer").snapshot "packer_snapshot_tmp.json"
-end, {})
-vim.api.nvim_create_user_command("PackerLockFromTmp", M.packer_lockfile, {})
+local packer_lockfile = function()
+    os.execute("jq --sort-keys . " .. snapshot_file_absolute .. " > " .. lockfile_absolute)
+    os.remove(snapshot_file_absolute)
+end
 
-return M
+vim.api.nvim_create_user_command("PackerTmpSnapshot", packer_snapshot, {})
+vim.api.nvim_create_user_command("PackerLockFromTmp", packer_lockfile, {})

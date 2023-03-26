@@ -9,7 +9,7 @@ if not mlsp_status_ok then
 end
 
 local servers = {
-    "sumneko_lua",
+    "lua_ls",
     "clangd",
     "cssls",
     "html",
@@ -18,7 +18,7 @@ local servers = {
     "pyright",
     "bashls",
     "jsonls",
-    -- "yamlls",
+    "yamlls",
     "gopls",
     "ansiblels",
     "dockerls",
@@ -43,9 +43,9 @@ for _, server in pairs(servers) do
         capabilities = require("core.lsp.handlers").capabilities,
     }
 
-    if server == "sumneko_lua" then
-        local sumneko_opts = require "core.lsp.settings.sumneko_lua"
-        opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
+    if server == "lua_ls" then
+        local lua_ls_opts = require "core.lsp.settings.lua_ls"
+        opts = vim.tbl_deep_extend("force", lua_ls_opts, opts)
     end
 
     if server == "pyright" then
@@ -59,8 +59,8 @@ for _, server in pairs(servers) do
     end
 
     if server == "tsserver" then
-      local tsserver_opts = require "core.lsp.settings.tsserver"
-      opts = vim.tbl_deep_extend("force", tsserver_opts, opts)
+        local tsserver_opts = require "core.lsp.settings.tsserver"
+        opts = vim.tbl_deep_extend("force", tsserver_opts, opts)
     end
 
     -- if server == "yamlls" then
