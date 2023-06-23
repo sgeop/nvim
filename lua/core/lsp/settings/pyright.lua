@@ -4,6 +4,7 @@ return {
     settings = {
         python = {
             analysis = {
+                -- autoImportChecking = true,
                 autoSearchPaths = true,
                 typeCheckingMode = "off",
                 useLibraryCodeForTypes = true,

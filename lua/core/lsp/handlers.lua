@@ -97,7 +97,7 @@ M.on_attach = function(client, bufnr)
     end
 
     if client.name == "yamlls" then
-        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentFormattingProvider = true
     end
 
     lsp_keymaps(bufnr)

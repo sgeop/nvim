@@ -110,6 +110,9 @@
   "project.nvim": {
     "commit": "685bc8e"
   },
+  "schemastore.nvim": {
+    "commit": "dde2930"
+  },
   "telescope.nvim": {
     "commit": "203bf56"
   },
