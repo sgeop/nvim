@@ -9,16 +9,17 @@ if not mlsp_status_ok then
 end
 
 local servers = {
-    "sumneko_lua",
+    "lua_ls",
     "clangd",
     "cssls",
     "html",
     "terraformls",
     "tsserver",
     "pyright",
+    "ruff_lsp",
     "bashls",
     "jsonls",
-    -- "yamlls",
+    "yamlls",
     "gopls",
     "ansiblels",
     "dockerls",
@@ -43,14 +44,19 @@ for _, server in pairs(servers) do
         capabilities = require("core.lsp.handlers").capabilities,
     }
 
-    if server == "sumneko_lua" then
-        local sumneko_opts = require "core.lsp.settings.sumneko_lua"
-        opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
+    if server == "lua_ls" then
+        local lua_ls_opts = require "core.lsp.settings.lua_ls"
+        opts = vim.tbl_deep_extend("force", lua_ls_opts, opts)
     end
 
     if server == "pyright" then
         local pyright_opts = require "core.lsp.settings.pyright"
         opts = vim.tbl_deep_extend("force", pyright_opts, opts)
+    end
+
+    if server == "ruff_lsp" then
+        local ruff_opts = require "core.lsp.settings.ruff_lsp"
+        opts = vim.tbl_deep_extend("force", ruff_opts, opts)
     end
 
     if server == "gopls" then
@@ -59,18 +65,23 @@ for _, server in pairs(servers) do
     end
 
     if server == "tsserver" then
-      local tsserver_opts = require "core.lsp.settings.tsserver"
-      opts = vim.tbl_deep_extend("force", tsserver_opts, opts)
+        local tsserver_opts = require "core.lsp.settings.tsserver"
+        opts = vim.tbl_deep_extend("force", tsserver_opts, opts)
     end
 
-    -- if server == "yamlls" then
-    --     local yamlls_opts = require "core.lsp.settings.yamlls"
-    --     opts = vim.tbl_deep_extend("force", yamlls_opts, opts)
-    -- end
+    if server == "yamlls" then
+        local yamlls_opts = require "core.lsp.settings.yamlls"
+        opts = vim.tbl_deep_extend("force", yamlls_opts, opts)
+    end
 
     if server == "ansiblels" then
         local ansiblels_opts = require "core.lsp.settings.ansiblels"
         opts = vim.tbl_deep_extend("force", ansiblels_opts, opts)
+    end
+
+    if server == "terraformls" then
+        local terraformls_opts = require "core.lsp.settings.terraformls"
+        opts = vim.tbl_deep_extend("force", terraformls_opts, opts)
     end
 
     lspconfig[server].setup(opts)

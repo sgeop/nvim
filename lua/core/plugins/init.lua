@@ -89,6 +89,8 @@ return packer.startup {
         use { "jose-elias-alvarez/null-ls.nvim" } -- for formatters and linters
         use { "RRethy/vim-illuminate" }
 
+        use { "b0o/schemastore.nvim" }
+
         -- Telescope
         use { "nvim-telescope/telescope.nvim" }
         -- use { "nvim-telescope/telescope-project.nvim" }
