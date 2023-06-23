@@ -7,7 +7,7 @@ end
 
 local status_ok, keymenu = pcall(require, "key-menu")
 if not status_ok then
-    vim.notify("key-menu plugin failed to load", "error")
+    vim.notify("key-menu plugin failed to load", vim.log.levels.Error)
 end
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -88,7 +88,7 @@ M.on_attach = function(client, bufnr)
         client.server_capabilities.documentFormattingProvider = false
     end
 
-    if client.name == "sumneko_lua" then
+    if client.name == "lua_ls" then
         client.server_capabilities.documentFormattingProvider = false
     end
 
